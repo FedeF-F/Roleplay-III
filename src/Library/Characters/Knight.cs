@@ -1,24 +1,24 @@
 using System.Collections.Generic;
 namespace RoleplayGame
 {
-    public class Knight: ICharacter
+    public class Knight: Character
     {
         private int health = 100;
 
         private List<IItem> items = new List<IItem>();
 
         public Knight(string name)
+        :base(name)
         {
-            this.Name = name;
             
             this.AddItem(new Sword());
             this.AddItem(new Armor());
             this.AddItem(new Shield());
         }
 
-        public string Name { get; set; }
+        public new string Name { get; set; }
         
-        public int AttackValue
+        public new int AttackValue
         {
             get
             {
@@ -34,7 +34,7 @@ namespace RoleplayGame
             }
         }
 
-        public int DefenseValue
+        public new int DefenseValue
         {
             get
             {
@@ -50,7 +50,7 @@ namespace RoleplayGame
             }
         }
 
-        public int Health
+        public new int Health
         {
             get
             {
@@ -62,7 +62,7 @@ namespace RoleplayGame
             }
         }
 
-        public void ReceiveAttack(int power)
+        public override void ReceiveAttack(int power)
         {
             if (this.DefenseValue < power)
             {
@@ -70,17 +70,17 @@ namespace RoleplayGame
             }
         }
 
-        public void Cure()
+        public override void Cure()
         {
             this.Health = 100;
         }
 
-        public void AddItem(IItem item)
+        public override void AddItem(IItem item)
         {
             this.items.Add(item);
         }
 
-        public void RemoveItem(IItem item)
+        public override void RemoveItem(IItem item)
         {
             this.items.Remove(item);
         }
