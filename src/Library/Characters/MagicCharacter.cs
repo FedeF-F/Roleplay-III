@@ -28,7 +28,7 @@ namespace RoleplayGame
 
             public abstract void Cure();
 
-            public abstract void ReceiveAttack(int power);
+            public abstract void ReceiveAttack(int power, int vp);
 
             public abstract void AddItem(IMagicalItem item);
             

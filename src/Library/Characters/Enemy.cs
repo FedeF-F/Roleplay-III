@@ -1,19 +1,19 @@
 using System.Collections.Generic;
 namespace RoleplayGame
 {
-    public class Wizard: MagicCharacter
+    public class Enemy: Character
     {
         private int health = 100;
 
         private List<IItem> items = new List<IItem>();
 
-        private List<IMagicalItem> magicalItems = new List<IMagicalItem>();
-
-        public Wizard(string name)
+        public Enemy(string name)
         :base(name)
         {
             
-            this.AddItem(new Staff());
+            this.AddItem(new Sword());
+            this.AddItem(new Armor());
+            this.AddItem(new Shield());
         }
 
         public new string Name { get; set; }
@@ -30,13 +30,15 @@ namespace RoleplayGame
                         value += (item as IAttackItem).AttackValue;
                     }
                 }
-                foreach (IMagicalItem item in this.magicalItems)
-                {
-                    if (item is IMagicalAttackItem)
-                    {
-                        value += (item as IMagicalAttackItem).AttackValue;
-                    }
-                }
+                return value;
+            }
+        }
+
+         public int VPGiven
+        {
+            get
+            {
+                int value = 1;
                 return value;
             }
         }
@@ -51,13 +53,6 @@ namespace RoleplayGame
                     if (item is IDefenseItem)
                     {
                         value += (item as IDefenseItem).DefenseValue;
-                    }
-                }
-                foreach (IMagicalItem item in this.magicalItems)
-                {
-                    if (item is IMagicalDefenseItem)
-                    {
-                        value += (item as IMagicalDefenseItem).DefenseValue;
                     }
                 }
                 return value;
@@ -81,6 +76,10 @@ namespace RoleplayGame
             if (this.DefenseValue < power)
             {
                 this.Health -= power - this.DefenseValue;
+                if (this.health <= 0)
+                {
+                    vp += this.VPGiven;
+                }
             }
         }
 
@@ -98,16 +97,5 @@ namespace RoleplayGame
         {
             this.items.Remove(item);
         }
-
-        public override void AddItem(IMagicalItem item)
-        {
-            this.magicalItems.Add(item);
-        }
-
-        public override void RemoveItem(IMagicalItem item)
-        {
-            this.magicalItems.Remove(item);
-        }
-
     }
 }

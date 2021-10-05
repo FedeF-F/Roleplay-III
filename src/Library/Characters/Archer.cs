@@ -61,7 +61,7 @@ namespace RoleplayGame
             }
         }
 
-        public override void ReceiveAttack(int power)
+        public override void ReceiveAttack(int power, int vp)
         {
             if (this.DefenseValue < power)
             {

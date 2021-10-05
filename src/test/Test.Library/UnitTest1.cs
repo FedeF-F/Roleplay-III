@@ -53,12 +53,23 @@ namespace Test.Library
             Assert.AreEqual(WizDamageExpected, gandalf.AttackValue);
             WizDefenseExpected = 240;
             Assert.AreEqual(WizDefenseExpected, gandalf.DefenseValue);
-            
-            
-            
+        }
+        [Test]
+        public void TestBasicFight()
+        {
+            Wizard gandalf = new Wizard("Gandalf");
+            Dwarf gimli = new Dwarf("Gimli");
 
+            gimli.ReceiveAttack(gandalf.AttackValue);
 
+            int ExpectedHealth = 18;
+            Assert.AreEqual(gimli.Health,ExpectedHealth);
+            ExpectedHealth = 100;
+            gimli.Cure();
+            Assert.AreEqual(gimli.Health,ExpectedHealth);
 
+            gandalf.ReceiveAttack(gimli.AttackValue);
+            ExpectedHealth = 100;
         }
     }
 }

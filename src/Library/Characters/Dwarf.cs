@@ -5,6 +5,8 @@ namespace RoleplayGame
     {
         private int health = 100;
 
+        public int victoryPoints = 0;
+
         private List<IItem> items = new List<IItem>();
 
         public Dwarf(string name)
@@ -14,7 +16,10 @@ namespace RoleplayGame
             this.AddItem(new Helmet());
         }
 
+        public int VictoryPoints { get; set; }
+
         public new string Name { get; set; }
+
         
         public new int AttackValue
         {
@@ -60,7 +65,7 @@ namespace RoleplayGame
             }
         }
 
-        public override void ReceiveAttack(int power)
+        public override void ReceiveAttack(int power, int vp)
         {
             if (this.DefenseValue < power)
             {
