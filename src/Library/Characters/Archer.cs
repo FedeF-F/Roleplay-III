@@ -4,6 +4,9 @@ namespace RoleplayGame
     public class Archer: Character
     {
         private int health = 100;
+        
+        public int victoryPoints = 0;
+
 
         private List<IItem> items = new List<IItem>();
 

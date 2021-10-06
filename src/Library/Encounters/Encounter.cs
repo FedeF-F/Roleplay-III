@@ -1,31 +1,56 @@
 using System.Collections.Generic;
 using System.Collections;
 using System;
+
+
 namespace RoleplayGame
 {
     public class Encounter
     {
-        public void CombatEncounter(ArrayList Heroes, ArrayList Enemies)
+        public void DoEncounter(List<Character> Heroes, List<Character> Enemies)
         {
-            int count = Heroes.Count;
+            int Herocount = Heroes.Count;
             int target = 0;
-            foreach (Enemy Enemy in Enemies)
+            int Enemycount = Enemies.Count;
+            while (Herocount > 0 & Enemycount > 0)
             {
-                Heroes[target].ReceiveAttack(Enemy.AttackValue, 0);
-                target = (target+1)%count;
-                if (Heroes[target].Health <= 0)
+                foreach (Enemy Enemy in Enemies)
                 {
-                    Heroes.Remove(Heroes[target]);
-                    count = Heroes.Count;
-                    if (count == 0)
+                    Heroes[target].ReceiveAttack(Enemy.AttackValue, 0);
+                    target = (target+1)%Herocount;
+                    if (Heroes[target].Health <= 0)
                     {
-                    Console.WriteLine("The heroes have been defeated");
-                    break;
+                        Heroes.Remove(Heroes[target]);
                     }
-
+                }
+            
+                foreach (Character Hero in Heroes)
+                {
+                    foreach (Enemy Enemy in Enemies)
+                    {   
+                        target = (target+1)%Enemycount;
+                        Enemies[target].ReceiveAttack(Hero.AttackValue, Enemy.VPGiven );
+                        if (Enemies[target].Health <= 0)
+                        {
+                            Enemies.Remove(Enemies[target]);
+                        }
+                    }
+                }
+                Enemycount = Enemies.Count;
+                Herocount = Heroes.Count;
+            }
+            foreach (Character Hero in Heroes)
+            {
+                {
+                    if (Hero.VictoryPoints >= 5)
+                    {
+                        Hero.Cure();
+                    }
                 }
             }
 
         }
     }
+
 }
+

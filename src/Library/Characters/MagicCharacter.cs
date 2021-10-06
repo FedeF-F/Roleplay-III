@@ -7,32 +7,18 @@ namespace RoleplayGame
         void RemoveItem(IMagicalItem item);
     }*/
 
-    public abstract class MagicCharacter
+    public abstract class MagicCharacter: Character
     {
          protected MagicCharacter(string name)
+         :base(name)
             {
                 this.Name = name;
             }
 
-            public string Name { get; set; }
-
-            public int Health { get; }
-
-            public int AttackValue { get; }
-
-            public int DefenseValue { get; }
-
-            public abstract void AddItem(IItem item);  
-
-            public abstract void RemoveItem(IItem item);
-
-            public abstract void Cure();
-
-            public abstract void ReceiveAttack(int power, int vp);
 
             public abstract void AddItem(IMagicalItem item);
             
-             public abstract void RemoveItem(IMagicalItem item);
+            public abstract void RemoveItem(IMagicalItem item);
 
     }
 

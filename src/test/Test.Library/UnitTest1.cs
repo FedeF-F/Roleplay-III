@@ -60,7 +60,7 @@ namespace Test.Library
             Wizard gandalf = new Wizard("Gandalf");
             Dwarf gimli = new Dwarf("Gimli");
 
-            gimli.ReceiveAttack(gandalf.AttackValue);
+            gimli.ReceiveAttack(gandalf.AttackValue, 0);
 
             int ExpectedHealth = 18;
             Assert.AreEqual(gimli.Health,ExpectedHealth);
@@ -68,7 +68,7 @@ namespace Test.Library
             gimli.Cure();
             Assert.AreEqual(gimli.Health,ExpectedHealth);
 
-            gandalf.ReceiveAttack(gimli.AttackValue);
+            gandalf.ReceiveAttack(gimli.AttackValue, 0);
             ExpectedHealth = 100;
         }
     }

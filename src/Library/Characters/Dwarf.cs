@@ -16,8 +16,6 @@ namespace RoleplayGame
             this.AddItem(new Helmet());
         }
 
-        public int VictoryPoints { get; set; }
-
         public new string Name { get; set; }
 
         

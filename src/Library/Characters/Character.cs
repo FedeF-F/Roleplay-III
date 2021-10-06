@@ -35,6 +35,9 @@ namespace RoleplayGame
 
             public int DefenseValue { get; }
 
+            public int VictoryPoints { get; set; }
+
+
             public abstract void AddItem(IItem item);  
 
             public abstract void RemoveItem(IItem item);
